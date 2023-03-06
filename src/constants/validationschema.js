@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 import {PASSWORD_MIN_CHARACTER,PASSWORD_MAX_CHARACTER} from './constants'
 import {ErrorMessage} from './message'
 import {PASSWORD_REGEX,MOBILE_NUMBER_REGEX,EMAIL_NUMBER} from './constantregex'
-import ResetPassword from '../components/ResetPassword'
+
 
 
 export const RegisterValidationSchema = Yup.object({

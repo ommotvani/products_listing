@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import bcrypt from "bcryptjs";
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { resetPasswordValidationSchema } from '../constants/validationschema';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -52,7 +53,7 @@ function ResetPassword() {
         if (isPasswordExit) {
 
             //compare current password and new password 
-            const matchpassword = values.oldPassword == values.newpassword
+            const matchpassword = values.oldPassword === values.newpassword
 
             if (matchpassword) {
                 toast.error("password already exits")
@@ -90,17 +91,18 @@ function ResetPassword() {
         <div>
             <Formik
                 initialValues={initialValues}
+                validationSchema={resetPasswordValidationSchema}
                 onSubmit={onsubmit}>
                 <Form>
 
-                    <div className='inputfield'>
+                    <div className='input_field'>
                         <label htmlFor="oldPassword">OldPaasword:</label>
                         <Field type={passwordShown ? "text" : "password"} name="oldPassword" id="oldPassword" />
                         <i onClick={togglePasswordVisiblity}>{eye}</i>{" "}
                         <ErrorMessage name="password" />
                     </div>
 
-                    <div className='inputfield'>
+                    <div className='input_field'>
                         <label htmlFor="newpassword">NewPassword:</label>
                         <Field type={newPassowrd ? "text" : "password"} name="newpassword" id="newpassword" />
                         <i onClick={newPasswordVisiblity}>{eye}</i>{" "}
@@ -108,7 +110,7 @@ function ResetPassword() {
                     </div>
 
 
-                    <div className='inputfield'>
+                    <div className='input_field'>
                         <label htmlFor="conformNewPassword">conformNewPassword:</label>
                         <Field type={conformPassowrd ? "text" : "password"} name="conformNewPassword" id="conformNewPassword" />
                         <i onClick={conformPasswordVisiblity}>{eye}</i>{" "}
@@ -116,7 +118,7 @@ function ResetPassword() {
                     </div>
 
 
-                    <div className='inputfield'>
+                    <div className='input_field'>
                         <Button type='submit'>update</Button>
                         <Button type="primary" className='back_btn' onClick={() => navigate("/products")} >back </Button>
                     </div>

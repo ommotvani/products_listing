@@ -29,6 +29,7 @@ function EditProfile() {
     else {
       //check login email and register user email and set edit profile data 
       const findUser = alluser.find((ele) => ele.email === oldData.email)
+      console.log(findUser)
       findUser.firstname = values.firstname
       findUser.lastname = values.lastname
       findUser.email = values.email
@@ -49,25 +50,25 @@ function EditProfile() {
         validationSchema={editProfileValidationSchema}
         onSubmit={onsubmit}>
         <Form>
-          <div className='inputfield'>
+          <div className='input_field'>
             <label htmlFor="firstname">FirstName:</label>
             <Field type="text" name="firstname" id="firstname" className="field" />
             <ErrorMessage name="firstname" />
           </div>
 
-          <div className='inputfield'>
+          <div className='input_field'>
             <label htmlFor="lastname">LastName:</label>
             <Field type="text" name="lastname" id="lastname" />
             <ErrorMessage name="lastname" />
           </div>
 
-          <div className='inputfield'>
+          <div className='input_field'>
             <label htmlFor="email">Email:</label>
             <Field type="text" name="email" id="email" />
             <ErrorMessage name="email" />
           </div>
 
-          <div className='inputfield'>
+          <div className='input_field'>
             <label htmlFor="phoneno">Phoneno:</label>
             <Field type="number" name="phoneno" id="phoneno" />
             <ErrorMessage name="phoneno" />
@@ -75,7 +76,7 @@ function EditProfile() {
 
 
 
-          <div className='inputfield'>
+          <div className='input_field'>
             <Button type='submit'> Submit </Button>
             <Button type="primary" className='back_btn' onClick={() => navigate("/products")} >back </Button>
           </div>

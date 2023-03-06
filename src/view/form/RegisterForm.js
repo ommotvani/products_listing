@@ -6,7 +6,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import bcrypt from 'bcryptjs'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Col, Row } from 'react-bootstrap';
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 function RegisterForm() {

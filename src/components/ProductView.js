@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import { useParams, NavLink, useNavigate } from 'react-router-dom';
+import { useParams,  useNavigate } from 'react-router-dom';
 function ProductView() {
 
     // get id of product 

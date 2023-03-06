@@ -66,7 +66,7 @@ function Products() {
   return (
     <div>
       <Navbar />
-      <DataTable columns={columns} data={post} pagination />
+      <DataTable paginationRowsPerPageOptions={[8,10]} columns={columns} data={post} pagination />
     </div>
   )
 }

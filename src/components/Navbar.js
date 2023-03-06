@@ -22,7 +22,6 @@ function Navbar() {
                     <NavHead.Collapse id="basic-navbar-nav">
                         <Nav >
                             <NavDropdown  title=" Profile" id="basic-nav-dropdown">
-
                                 <NavDropdown.Item href="/users/editprofile">
                                     EditProfile
                                 </NavDropdown.Item>

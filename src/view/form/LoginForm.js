@@ -69,7 +69,7 @@ function LoginForm() {
                 validationSchema={loginValidationSchema}
                 onSubmit={handlesubmit}>
                 <Form>
-                    <div className='inputfield'>
+                    <div className='input_field'>
                         <label htmlFor="email">Email:</label>
                         <Field type="text" name="email" id="email" />
                         <ErrorMessage name="email" />
@@ -77,7 +77,7 @@ function LoginForm() {
 
 
 
-                    <div className='inputfield'>
+                    <div className='input_field'>
                         <label htmlFor="password">Paasword:</label>
                         <Field type={passwordShown ? "text" : "password"} name="password" id="password" />
                         <i onClick={togglePasswordVisiblity}>{eye}</i>{" "}
@@ -85,9 +85,8 @@ function LoginForm() {
                     </div>
 
 
-                    <div className='inputfield'>
-                        <button type='submit'>login</button> <NavLink to="/register">dont have account?</NavLink>
-
+                    <div className='input_field'>
+                        <button type='submit' className='login_btn'>login</button> <NavLink to="/register" className="back_btn">dont have account?</NavLink>
                     </div>
 
 
