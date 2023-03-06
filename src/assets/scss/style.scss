@@ -1,0 +1,32 @@
+@import './variable.scss';
+
+
+.inputfield{
+    width:400px;
+}
+
+  .img{
+    width:100px;
+  }
+
+  .products_img{
+    width:80px;
+  }
+  .errormsg{
+    color:$errorcolor;
+  }
+.back_btn{
+  margin-left:10px;
+}
+label{
+  display: inline-block;
+    width: 140px;
+    text-align: right;
+}
+.Field{
+  width:400px;
+}
+.register_btn{
+ 
+  margin-left: 300px;
+}
