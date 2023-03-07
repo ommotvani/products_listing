@@ -1,9 +1,9 @@
 import React from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { editProfileValidationSchema } from '../constants/validationschema';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { editProfileValidationSchema } from '../constants/validationschema'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 function EditProfile() {
 
@@ -12,8 +12,8 @@ function EditProfile() {
 
   //get data of register users and login user from local storage 
 
-  let oldData = JSON.parse(localStorage.getItem('Auth'))
-  let alluser = JSON.parse(localStorage.getItem('Users'))
+  const oldData = JSON.parse(localStorage.getItem('Auth'))
+  const alluser = JSON.parse(localStorage.getItem('Users'))
 
 
   const onsubmit = (values) => {
@@ -25,8 +25,7 @@ function EditProfile() {
 
     if (checkUser.length > 0) {
       toast.error("user already exit")
-    }
-    else {
+    } else {
       //check login email and register user email and set edit profile data 
       const findUser = alluser.find((ele) => ele.email === oldData.email)
       console.log(findUser)
@@ -36,7 +35,7 @@ function EditProfile() {
       findUser.phoneno = values.phoneno
 
       //set edit profile data into register users array and login user object 
-      localStorage.setItem("Users", JSON.stringify(alluser));
+      localStorage.setItem("Users", JSON.stringify(alluser))
       localStorage.setItem("Auth", JSON.stringify(findUser))
     }
 
@@ -73,8 +72,6 @@ function EditProfile() {
             <Field type="number" name="phoneno" id="phoneno" />
             <ErrorMessage name="phoneno" />
           </div>
-
-
 
           <div className='input_field'>
             <Button type='submit'> Submit </Button>

@@ -1,31 +1,30 @@
-import './App.css';
-import RegisterForm from './view/form/RegisterForm';
-import LoginForm from './view/form/LoginForm';
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import Products from './components/Products';
-import 'react-toastify/dist/ReactToastify.css';
-import { useEffect, useState } from 'react';
-import ProtectedRouter from './protectedRoute/ProtectedRoute';
-import ProductDetail from './components/ProductView';
-import { ToastContainer } from 'react-toastify';
-import EditProfile from './components/EditProfile';
-import ResetPassword from './components/ResetPassword';
-import ProductView from './components/ProductView';
+import './App.css'
+import RegisterForm from './view/form/RegisterForm'
+import LoginForm from './view/form/LoginForm'
+import {  Routes, Route, useNavigate } from 'react-router-dom'
+import Products from './components/Products'
+import 'react-toastify/dist/ReactToastify.css'
+import ProtectedRouter from './protectedRoute/ProtectedRoute'
+import { ToastContainer } from 'react-toastify'
+import EditProfile from './components/EditProfile'
+import ResetPassword from './components/ResetPassword'
+import ProductView from './components/ProductView'
+import { useEffect } from 'react'
 
 
 function App() {
-  const [user, setUser] = useState(null)
+  
   const navigate = useNavigate()
+  // const authData = null
 
-  // let authData = null
-  
+  const authData =  JSON.parse(localStorage.getItem("Auth"))
   useEffect(() => {
-    setUser(JSON.stringify(localStorage.getItem('Auth')))
-  }, [])
+    const authData = JSON.parse(localStorage.getItem("Auth"))
+    if (authData) {
+        navigate("/products")
+    }
+}, [])
 
-  let authData =  JSON.parse(localStorage.getItem("Auth"));
-
-  
   return (
 <>
     <Routes>
@@ -34,11 +33,6 @@ function App() {
       <Route path="/products" element={
         <ProtectedRouter auth={authData}>
           <Products />
-        </ProtectedRouter>
-      } />
-      <Route path="/productsDetail" element={
-        <ProtectedRouter auth={authData}>
-          <ProductDetail />
         </ProtectedRouter>
       } />
       <Route path="/users/editprofile" element={
@@ -63,7 +57,7 @@ function App() {
 
       </>
 
-  );
+  )
 }
 
-export default App;
+export default App

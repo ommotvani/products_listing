@@ -7,4 +7,4 @@ const ProtectedRouter = ({auth, children}) => {
 
 }
 
-export default ProtectedRouter;
+export default ProtectedRouter

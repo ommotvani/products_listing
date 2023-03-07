@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import ListGroup from 'react-bootstrap/ListGroup'
 
-import { useParams,  useNavigate } from 'react-router-dom';
+import { useParams,  useNavigate } from 'react-router-dom'
 function ProductView() {
 
     // get id of product 
 
-    const { id } = useParams();
+    const { id } = useParams()
 
     const [item, setItem] = useState([])
 
@@ -17,7 +17,7 @@ function ProductView() {
 
     const fetchdata = async () => {
         try {
-            const response = await axios(`https://dummyjson.com/products/${id}`);
+            const response = await axios(`https://dummyjson.com/products/${id}`)
             setItem([response.data])
         } catch (error) {
 
@@ -25,12 +25,10 @@ function ProductView() {
     }
 
     useEffect(() => {
-        fetchdata();
-    }, []);
+        fetchdata()/*eslint-disable-next-line */
+    }, [])
 
     const navigate = useNavigate()
-
-
 
     return (
         <div>
@@ -39,7 +37,7 @@ function ProductView() {
                     {
                         item.map((ele) => {
                             return (
-                                <Card style={{ width: '18rem' }}>
+                                <Card key={ele.id} style={{ width: '18rem' }}>
                                     <Card.Img variant="top" src={ele.thumbnail} />
                                     <Card.Body>
                                         <Card.Title>{ele.title}</Card.Title>

@@ -1,7 +1,7 @@
-import {PASSWORD_MIN_CHARACTER,PASSWORD_MAX_CHARACTER} from './constants'
+import {PASSWORD_MIN_CHARACTER, PASSWORD_MAX_CHARACTER} from './constants'
 
 
-export const ErrorMessage={
+export const ErrorMessage = {
     emailValid: 'Please enter valid email.',
     emailRequired: 'Please enter email.',
     passwordRequired: 'Please enter password.',
@@ -12,5 +12,5 @@ export const ErrorMessage={
     firstNameRequired: 'Please enter first name.',
     lastNameRequired: 'Please enter last name.',
     mobilenoRequired: 'Please enter Mobolie number.',
-    mobilenoValid: 'Please enter valid mobile number.',
+    mobilenoValid: 'Please enter valid mobile number.'
 }

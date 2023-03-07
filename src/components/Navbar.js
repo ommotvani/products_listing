@@ -1,17 +1,17 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import { Button, Navbar as NavHead } from 'react-bootstrap';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useNavigate } from 'react-router-dom';
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import { Button, Navbar as NavHead } from 'react-bootstrap'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
     const navigate = useNavigate()
 
 
     //logout user and deelete user data in auth 
-    const handlelogout =()=>{
-        localStorage.removeItem("Auth");
+    const handlelogout = () => {
+        localStorage.removeItem("Auth")
         navigate("/")
       }
     return (

@@ -1,34 +1,33 @@
 import React, { useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { toast } from 'react-toastify';
-import bcrypt from "bcryptjs";
-import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { resetPasswordValidationSchema } from '../constants/validationschema';
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEye } from "@fortawesome/free-solid-svg-icons"
+import { toast } from 'react-toastify'
+import bcrypt from "bcryptjs"
+import { Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { resetPasswordValidationSchema } from '../constants/validationschema'
 
-const eye = <FontAwesomeIcon icon={faEye} />;
+const eye = <FontAwesomeIcon icon={faEye} />
 
 function ResetPassword() {
     const navigate = useNavigate()
-    const [passwordShown, setPasswordShown] = useState(false);
+    const [passwordShown, setPasswordShown] = useState(false)
     const [newPassowrd, setNewPassowrd] = useState(false)
     const [conformPassowrd, setConformPassowrd] = useState(false)
-
 
 
     // toggel eye button shown or hid functionality 
 
     const togglePasswordVisiblity = () => {
-        setPasswordShown(passwordShown ? false : true);
-    };
+        setPasswordShown(!passwordShown)
+    }
 
     const newPasswordVisiblity = () => {
-        setNewPassowrd(newPassowrd ? false : true)
+        setNewPassowrd(!newPassowrd)
     }
     const conformPasswordVisiblity = () => {
-        setConformPassowrd(conformPassowrd ? false : true)
+        setConformPassowrd(!conformPassowrd)
     }
 
     //initial values of passwords 
@@ -57,8 +56,7 @@ function ResetPassword() {
 
             if (matchpassword) {
                 toast.error("password already exits")
-            }
-            else {
+            } else {
                 toast.success("password change sucessfully")
 
                 //find user from register user array threw find method 
@@ -67,8 +65,8 @@ function ResetPassword() {
 
 
                 //encrypt new password 
-                let salt = bcrypt.genSaltSync(10);
-                let encryptPass = bcrypt.hashSync(values.newpassword, salt);
+                const salt = bcrypt.genSaltSync(10)
+                const encryptPass = bcrypt.hashSync(values.newpassword, salt)
 
                 //pass encrypted values to filtered register user
                 filterRegisterUsers.password = encryptPass
@@ -76,15 +74,13 @@ function ResetPassword() {
 
                 //set updated passsword in register users array and login object 
                 const result = ({ ...userData, password: encryptPass, conformpassword: encryptPass })
-                localStorage.setItem("Auth", JSON.stringify(result));
-                localStorage.setItem("Users", JSON.stringify(registerUsersData));
+                localStorage.setItem("Auth", JSON.stringify(result))
+                localStorage.setItem("Users", JSON.stringify(registerUsersData))
             }
-        }
-        else {
+        } else {
             toast.error("password is wrong")
         }
     }
-
 
 
     return (

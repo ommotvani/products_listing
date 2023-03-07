@@ -5,10 +5,7 @@ import DataTable from 'react-data-table-component'
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
-
-
 function Products() {
-
   const navigate = useNavigate()
 
   //naviaget product id 
@@ -66,7 +63,7 @@ function Products() {
   return (
     <div>
       <Navbar />
-      <DataTable paginationRowsPerPageOptions={[8,10]} columns={columns} data={post} pagination />
+      <DataTable paginationRowsPerPageOptions={[8, 10]} columns={columns} data={post} pagination />
     </div>
   )
 }
