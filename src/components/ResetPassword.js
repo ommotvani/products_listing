@@ -40,13 +40,14 @@ function ResetPassword() {
 
     const onsubmit = async (values) => {
 
-        //get data of register users and login user from local storage 
 
-
+       /* The below code is getting the data from the local storage and parsing it into a JSON object. */
+       
         const registerUsersData = JSON.parse(localStorage.getItem("Users"))
         const userData = JSON.parse(localStorage.getItem("Auth"))
 
-        //compare user inputed current password and local storage passowrd 
+        
+       /* Comparing the old password with the password in the database. */
         const isPasswordExit = await bcrypt.compare(values.oldPassword, userData.password)
 
         if (isPasswordExit) {
@@ -60,7 +61,6 @@ function ResetPassword() {
                 toast.success("password change sucessfully")
 
                 //find user from register user array threw find method 
-
                 const filterRegisterUsers = registerUsersData.find(ele => ele.email === userData.email)
 
 

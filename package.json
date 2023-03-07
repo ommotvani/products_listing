@@ -53,5 +53,9 @@
   },
   "devDependencies": {
     "sass": "^1.58.3"
-  }
+  },
+  "browser": {
+    "crypto": false,
+    "stream": false
+}
 }

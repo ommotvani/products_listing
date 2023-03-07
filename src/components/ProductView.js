@@ -13,19 +13,22 @@ function ProductView() {
 
     const [item, setItem] = useState([])
 
-    //fetch data by id
 
+  /**
+   * It fetches data from the API and sets the state of the item.
+   */
     const fetchdata = async () => {
         try {
             const response = await axios(`https://dummyjson.com/products/${id}`)
             setItem([response.data])
         } catch (error) {
-
         }
     }
 
+  
+    /* A hook that is used for performing side effects in function components. */
     useEffect(() => {
-        fetchdata()/*eslint-disable-next-line */
+        fetchdata()
     }, [])
 
     const navigate = useNavigate()

@@ -10,23 +10,21 @@ function EditProfile() {
   const navigate = useNavigate()
 
 
-  //get data of register users and login user from local storage 
-
+  /* The below code is getting the data from the local storage and parsing it to JSON. */
   const oldData = JSON.parse(localStorage.getItem('Auth'))
   const alluser = JSON.parse(localStorage.getItem('Users'))
 
 
   const onsubmit = (values) => {
 
-
-    // filter user from register user array 
+    /* The below code is checking if the email is unique or not. */
     const uniqueUser = alluser.filter((ele) => ele.email !== oldData.email)
     const checkUser = uniqueUser.filter((ele) => ele.email === values.email)
 
     if (checkUser.length > 0) {
       toast.error("user already exit")
     } else {
-      //check login email and register user email and set edit profile data 
+      /* Finding the user in the array of users and then updating the user with the new values. */
       const findUser = alluser.find((ele) => ele.email === oldData.email)
       console.log(findUser)
       findUser.firstname = values.firstname
@@ -34,7 +32,7 @@ function EditProfile() {
       findUser.email = values.email
       findUser.phoneno = values.phoneno
 
-      //set edit profile data into register users array and login user object 
+      /* Setting the data into the local storage. */
       localStorage.setItem("Users", JSON.stringify(alluser))
       localStorage.setItem("Auth", JSON.stringify(findUser))
     }

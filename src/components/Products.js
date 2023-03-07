@@ -8,7 +8,11 @@ import { useNavigate } from 'react-router-dom'
 function Products() {
   const navigate = useNavigate()
 
-  //naviaget product id 
+
+  /**
+   * It navigates to the product view page when the user selects a product from the dropdown.
+   * @param id - The id of the product
+   */
   const onchange = (id) => {
     navigate(`/products/view/${id}`)
   }
