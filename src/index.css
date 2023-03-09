@@ -1,9 +1,0 @@
-/* {Routes.map(ele)=>{
-    (ele.isPrivate ? (
-      <Route path={ele.path} element={
-      <ProtectedRouter auth={authData}>
-        {ele.compoent}
-      </ProtectedRouter>
-    } />
-    ) :())
-  }} */

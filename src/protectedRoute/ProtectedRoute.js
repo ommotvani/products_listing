@@ -1,9 +1,10 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
+const ProtectedRouter = ({  children }) => {
+  
+  const local = JSON.parse(localStorage.getItem("Auth"))
 
-const ProtectedRouter = ({auth, children}) => {
-    
-  return auth === null ?  <Navigate to={'/'} /> : children
+  return local === null ? <Navigate to={'/'} /> : children
 
 }
 

@@ -14,7 +14,7 @@ import {toastErrorMessage, toastSuccessMessage} from '../../constants/message'
 // ***** end - import from files *****
 
 
-function RegisterForm({setFlag, flag}) {
+function RegisterForm() {
 
   // ***** start - define state and variable *****
 
@@ -74,14 +74,12 @@ function RegisterForm({setFlag, flag}) {
         const newData = [...oldData, result]
         localStorage.setItem("Users", JSON.stringify(newData))
         localStorage.setItem("Auth", JSON.stringify(result))
-        setFlag(!flag)
         navigate("/products")
         toast.success(toastSuccessMessage.registerSuccessfully)
       }
     } else {
       localStorage.setItem("Users", JSON.stringify([result]))
       localStorage.setItem("Auth", JSON.stringify(result))
-      setFlag(!flag)
       navigate("/products")
       toast.success(toastSuccessMessage.registerSuccessfully)
     }

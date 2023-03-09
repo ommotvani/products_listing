@@ -21,7 +21,8 @@ export const toastErrorMessage = {
     emailExit:'email already exit',
     userNotfound:'user not fount please signup first',
     emialNotexit:'email is not exit',
-    passwordAlredyExit:'password already exits'
+    passwordAlredyExit:'password already exits',
+    passwordIsWrong:"password is wrong"
 }
 
 /* A constant variable which is used to show success message. */

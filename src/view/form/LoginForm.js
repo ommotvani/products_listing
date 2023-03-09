@@ -13,7 +13,7 @@ import { loginValidationSchema } from '../../constants/validationschema'
 import { toastErrorMessage, toastSuccessMessage } from '../../constants/message'
 // ***** end - import from files *****
 
-function LoginForm({ setFlag, flag }) {
+function LoginForm() {
     // ***** start - define state and variable *****
     const eye = <FontAwesomeIcon icon={faEye} />
     const navigate = useNavigate()
@@ -55,13 +55,12 @@ function LoginForm({ setFlag, flag }) {
             if (error) {
 
             } else if (!isMatch) {
-                toast.error(toastErrorMessage.passwordNotMatch)
+                toast.error(toastErrorMessage.passwordIsWrong)
             } else {
 
                 /* Setting the data in the local storage and navigating to the products page. */
                 const result = { ...user, password: user.password }
                 localStorage.setItem("Auth", JSON.stringify(result))
-                setFlag(!flag)
                 navigate("/products")
                 toast.success(toastSuccessMessage.loginSuccessfully)
             }

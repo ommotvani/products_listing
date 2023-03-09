@@ -32,7 +32,6 @@ function EditProfile() {
     } else {
       /* Finding the user in the array of users and then updating the user with the new values. */
       const findUser = alluser.find((ele) => ele.email === oldData.email)
-      console.log(findUser)
       findUser.firstname = values.firstname
       findUser.lastname = values.lastname
       findUser.email = values.email
@@ -43,9 +42,7 @@ function EditProfile() {
       localStorage.setItem("Auth", JSON.stringify(findUser))
       toast.success(toastSuccessMessage.profileEditSuccessfully)
     }
-
   }
-
 
   return (
     <div>
@@ -80,7 +77,7 @@ function EditProfile() {
 
           <div className='input_field'>
             <Button type='submit'> Submit </Button>
-            <Button type="primary" className='back_btn' onClick={() => navigate("/products")} >back </Button>
+            <Button type='button' className='back_btn' onClick={() => navigate("/products")} >back </Button>
           </div>
 
 

@@ -123,7 +123,7 @@ function ResetPassword() {
 
                     <div className='input_field'>
                         <Button type='submit'>update</Button>
-                        <Button type="primary" className='back_btn' onClick={() => navigate("/products")} >back </Button>
+                        <Button type="button" className='back_btn' onClick={() => navigate("/products")} >back </Button>
                     </div>
 
 
