@@ -1,13 +1,17 @@
+// ***** start - import from packages *****
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import { Button, Navbar as NavHead } from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { useNavigate } from 'react-router-dom'
+// ***** end - import from packages *****
+
 
 function Navbar() {
+    // ***** start - define state and variable *****
     const navigate = useNavigate()
-
+    // ***** end - define state and variable ****
     /**
      * It removes the Auth token from local storage and navigates the user back to the homepage
      */

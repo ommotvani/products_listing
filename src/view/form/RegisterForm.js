@@ -1,33 +1,43 @@
-import React, { useState, useRef } from 'react'
+// ***** start - import from packages *****
+import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { RegisterValidationSchema } from '../../constants/validationschema'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye } from "@fortawesome/free-solid-svg-icons"
 import bcrypt from 'bcryptjs'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+// ***** end - import from packages *****
 
-const eye = <FontAwesomeIcon icon={faEye} />
+// ***** start - import from files *****
+import { RegisterValidationSchema } from '../../constants/validationschema'
+import {toastErrorMessage, toastSuccessMessage} from '../../constants/message'
+// ***** end - import from files *****
 
-function RegisterForm() {
 
-  const passwordInputRef = useRef()
+function RegisterForm({setFlag, flag}) {
+
+  // ***** start - define state and variable *****
+
+  const eye = <FontAwesomeIcon icon={faEye} />
   const navigate = useNavigate()
-
-
   const [passwordShown, setPasswordShown] = useState(false)
   const [conformPassword, setConformPassword] = useState(false)
+  // ***** end - define state and variable *****
+
 
   //toggle button for show password
   const togglePasswordVisiblity = () => {
     setPasswordShown(!passwordShown)
   }
 
+
   //toggle button for show conform password
   const toggleConformPasswordVisiblity = () => {
     setConformPassword(!conformPassword)
   }
 
+
+  /* Initial value of formik form. */
   const initialValues = {
     firstname: "",
     lastname: "",
@@ -44,6 +54,7 @@ function RegisterForm() {
     const encryptPassword = bcrypt.hashSync(password, 5)
     const result = { ...values, password: encryptPassword, conformpassword: encryptPassword }
 
+
     //get data from localstorage
     const oldData = JSON.parse(localStorage.getItem('Users'))
 
@@ -54,16 +65,25 @@ function RegisterForm() {
         return ele.email === values.email
       })
 
+
+      /* This is checking if the user exists in the database. If the user exists, it will show an error
+      message. */
       if (user) {
-        toast.error("email already exit")
-      } else {
+        toast.error(toastErrorMessage.emailExit)
+      }  else {
         const newData = [...oldData, result]
         localStorage.setItem("Users", JSON.stringify(newData))
-        navigate("/")
+        localStorage.setItem("Auth", JSON.stringify(result))
+        setFlag(!flag)
+        navigate("/products")
+        toast.success(toastSuccessMessage.registerSuccessfully)
       }
     } else {
       localStorage.setItem("Users", JSON.stringify([result]))
-      navigate("/")
+      localStorage.setItem("Auth", JSON.stringify(result))
+      setFlag(!flag)
+      navigate("/products")
+      toast.success(toastSuccessMessage.registerSuccessfully)
     }
 
   }
@@ -105,7 +125,7 @@ function RegisterForm() {
 
             <div>
               <label htmlFor="password">Paasword:</label>
-              <Field type={passwordShown ? "text" : "password"} name="password" id="password" ref={passwordInputRef} className="mb-4 ms-3 inputfield" />
+              <Field type={passwordShown ? "text" : "password"} name="password" id="password"  className="mb-4 ms-3 inputfield" />
               <i onClick={togglePasswordVisiblity}>{eye}</i>{" "}
               <ErrorMessage name="password" />
             </div>

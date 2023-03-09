@@ -1,26 +1,32 @@
-import React, {  useEffect, useState } from 'react'
+// ***** start - import from packages *****
+import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { loginValidationSchema } from '../../constants/validationschema'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye } from "@fortawesome/free-solid-svg-icons"
 import { toast } from 'react-toastify'
 import bcrypt from 'bcryptjs'
+// ***** end - define state and variable *****
 
-const eye = <FontAwesomeIcon icon={faEye} />
+// ***** start - import from files *****
+import { loginValidationSchema } from '../../constants/validationschema'
+import { toastErrorMessage, toastSuccessMessage } from '../../constants/message'
+// ***** end - import from files *****
 
-function LoginForm({setFlag, flag}) {
+function LoginForm({ setFlag, flag }) {
+    // ***** start - define state and variable *****
+    const eye = <FontAwesomeIcon icon={faEye} />
     const navigate = useNavigate()
-    
-
     const [passwordShown, setPasswordShown] = useState(false)
+    // ***** end - define state and variable *****
+
 
     useEffect(() => {
         const authData = JSON.parse(localStorage.getItem("Auth"))
         if (authData) {
-          navigate("/products")
+            navigate("/products")
         }
-      }, [])
+    }, [])
 
     const initialValues = {
         email: "",
@@ -28,35 +34,40 @@ function LoginForm({setFlag, flag}) {
     }
 
 
-    const handlesubmit = (values) => { 
-     /* Getting the data from the local storage. */
+    const handlesubmit = (values) => {
+        /* Getting the data from the local storage. */
         const oldData = JSON.parse(localStorage.getItem('Users'))
 
-       
+        if (!oldData) {
+            toast.error(toastErrorMessage.userNotfound)
+        }
+
         /* This is checking if the user exists in the database. */
         const user = oldData.find((ele) => ele.email === values.email)
+
         if (!user) {
-            toast.error("error")
+            toast.error(toastErrorMessage.emialNotexit)
         }
 
 
-       /* Comparing the password and confirm password. */
+        /* Comparing the password and confirm password. */
         bcrypt.compare(values.password, user.password, function (error, isMatch) {
             if (error) {
-                console.log("error ")
+
             } else if (!isMatch) {
-                toast.error("password is not match")
+                toast.error(toastErrorMessage.passwordNotMatch)
             } else {
 
                 /* Setting the data in the local storage and navigating to the products page. */
-                const result = { ...user, password: user.password}
+                const result = { ...user, password: user.password }
                 localStorage.setItem("Auth", JSON.stringify(result))
                 setFlag(!flag)
                 navigate("/products")
+                toast.success(toastSuccessMessage.loginSuccessfully)
             }
         })
     }
-   
+
     /**
      * If the password is shown, hide it. If the password is hidden, show it
      */

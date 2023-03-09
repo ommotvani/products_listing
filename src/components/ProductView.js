@@ -1,10 +1,12 @@
+// ***** start - import from packages *****
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
-
 import { useParams,  useNavigate } from 'react-router-dom'
+// ***** end - import from packages *****
+
 function ProductView() {
 
     // get id of product 

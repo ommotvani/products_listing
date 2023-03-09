@@ -1,18 +1,24 @@
+// ***** start - import from packages *****
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { editProfileValidationSchema } from '../constants/validationschema'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
+// ***** end - import from packages *****
+
+// ***** start - import from files *****
+import { editProfileValidationSchema } from '../constants/validationschema'
+import { toastErrorMessage, toastSuccessMessage } from '../constants/message'
+// ***** start - import from files *****
 
 function EditProfile() {
 
+  // ***** start - define state and variable *****
   const navigate = useNavigate()
-
-
   /* The below code is getting the data from the local storage and parsing it to JSON. */
   const oldData = JSON.parse(localStorage.getItem('Auth'))
   const alluser = JSON.parse(localStorage.getItem('Users'))
+  // ***** end - define state and variable ****
 
 
   const onsubmit = (values) => {
@@ -22,7 +28,7 @@ function EditProfile() {
     const checkUser = uniqueUser.filter((ele) => ele.email === values.email)
 
     if (checkUser.length > 0) {
-      toast.error("user already exit")
+      toast.error(toastErrorMessage.emailExit)
     } else {
       /* Finding the user in the array of users and then updating the user with the new values. */
       const findUser = alluser.find((ele) => ele.email === oldData.email)
@@ -35,6 +41,7 @@ function EditProfile() {
       /* Setting the data into the local storage. */
       localStorage.setItem("Users", JSON.stringify(alluser))
       localStorage.setItem("Auth", JSON.stringify(findUser))
+      toast.success(toastSuccessMessage.profileEditSuccessfully)
     }
 
   }

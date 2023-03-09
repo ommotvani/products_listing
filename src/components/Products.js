@@ -1,13 +1,14 @@
+// ***** start - import from packages *****
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import DataTable from 'react-data-table-component'
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+// ***** end - import from packages *****
 
 function Products() {
   const navigate = useNavigate()
-
 
   /**
    * It navigates to the product view page when the user selects a product from the dropdown.
@@ -57,7 +58,7 @@ function Products() {
     }
   ]
   useEffect(() => {
-    axios.get('https://dummyjson.com/products')
+  axios.get('https://dummyjson.com/products')
       .then(response => {
         setPost(response.data.products)
       })

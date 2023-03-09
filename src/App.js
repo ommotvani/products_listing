@@ -26,7 +26,7 @@ products page. */
     <>
       <Routes>
         <Route path="/" element={<LoginForm setFlag={setFlag} flag={flag}/>} />
-        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/register" element={<RegisterForm setFlag={setFlag} flag={flag}/>} />
         <Route path="/products" element={
           <ProtectedRouter auth={authData}>
             <Products setFlag={setFlag}/>

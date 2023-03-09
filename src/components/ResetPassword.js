@@ -1,3 +1,4 @@
+// ***** start - import from packages *****
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -6,15 +7,22 @@ import { toast } from 'react-toastify'
 import bcrypt from "bcryptjs"
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { resetPasswordValidationSchema } from '../constants/validationschema'
+// // ***** end - import from packages *****
 
-const eye = <FontAwesomeIcon icon={faEye} />
+// ***** start - import from files *****
+import { resetPasswordValidationSchema } from '../constants/validationschema'
+import { toastErrorMessage, toastSuccessMessage } from '../constants/message'
+
 
 function ResetPassword() {
+    const eye = <FontAwesomeIcon icon={faEye} />
+
+    // ***** start - define state and variable *****
     const navigate = useNavigate()
     const [passwordShown, setPasswordShown] = useState(false)
     const [newPassowrd, setNewPassowrd] = useState(false)
     const [conformPassowrd, setConformPassowrd] = useState(false)
+    // ***** end - define state and variable *****
 
 
     // toggel eye button shown or hid functionality 
@@ -36,19 +44,18 @@ function ResetPassword() {
         newpassword: '',
         conformNewPassword: ''
     }
-
-
     const onsubmit = async (values) => {
 
 
-       /* The below code is getting the data from the local storage and parsing it into a JSON object. */
-       
+        /* The below code is getting the data from the local storage and parsing it into a JSON object. */
+
         const registerUsersData = JSON.parse(localStorage.getItem("Users"))
         const userData = JSON.parse(localStorage.getItem("Auth"))
 
-        
-       /* Comparing the old password with the password in the database. */
+
+        /* Comparing the old password with the password in the database. */
         const isPasswordExit = await bcrypt.compare(values.oldPassword, userData.password)
+        console.log(isPasswordExit)
 
         if (isPasswordExit) {
 
@@ -56,9 +63,9 @@ function ResetPassword() {
             const matchpassword = values.oldPassword === values.newpassword
 
             if (matchpassword) {
-                toast.error("password already exits")
+                toast.error(toastErrorMessage.passwordAlredyExit)
             } else {
-                toast.success("password change sucessfully")
+                toast.success(toastSuccessMessage.changePasswordSuccessfully)
 
                 //find user from register user array threw find method 
                 const filterRegisterUsers = registerUsersData.find(ele => ele.email === userData.email)
